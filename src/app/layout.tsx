@@ -10,7 +10,11 @@ const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 export const metadata: Metadata = {
   title: "CareQueue | AI-Powered Hospital Optimization",
   description: "Reduce patient wait times and optimize hospital resources with CareQueue AI.",
-  keywords: ["healthcare", "AI", "hospital optimization", "queue management", "medical software"]
+  keywords: ["healthcare", "AI", "hospital optimization", "queue management", "medical software"],
+  icons: {
+    icon: '/icon.png',
+    apple: '/icon.png',
+  },
 };
 
 export default function RootLayout({
@@ -20,9 +24,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link rel="icon" href="/favicon.ico" />
-      </head>
       <body className={`${inter.variable} ${outfit.variable}`}>
         <AuthProvider>
           <MainLayout>
