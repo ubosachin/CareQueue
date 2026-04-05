@@ -12,8 +12,10 @@
   --danger-rgb: 239, 68, 68;
   --warning: #f59e0b;
   --background: #fdfdff;
+  --background-rgb: 253, 253, 255;
   --foreground: #020817;
   --card-bg: #ffffff;
+  --card-bg-rgb: 255, 255, 255;
   --card-border: #e2e8f0;
   --sidebar-bg: #ffffff;
   --sidebar-border: #eef2f6;
@@ -35,8 +37,10 @@
   --danger-rgb: 248, 113, 113;
   --warning: #fbbf24;
   --background: #020617;
+  --background-rgb: 2, 6, 23;
   --foreground: #f8fafc;
   --card-bg: #0f172a;
+  --card-bg-rgb: 15, 23, 42;
   --card-border: #1e293b;
   --sidebar-bg: #1e293b;
   --sidebar-border: #334155;
@@ -277,6 +281,12 @@ h1, h2, h3, h4, h5, h6 {
     display: none !important;
   }
   .mobile-only {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .mobile-hide {
     display: none !important;
   }
 }
