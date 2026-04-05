@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-dotenv.config({ path: '.env.local' });
+dotenv.config({ path: '.env' });
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 import dbConnect from '../src/lib/db';

@@ -73,10 +73,7 @@ export default function Navbar() {
   const isPatientLayout = pathname?.startsWith('/patient');
   const isMinimal = pathname === '/' || pathname === '/slides' || pathname === '/login';
 
-  // Return a placeholder structure during server-render if needed, but here we prefer consistency.
-  // Actually, returning a skeleton or a stable SSR structure is better.
-  
-  if (isMinimal) return null;
+  if (!mounted || isMinimal) return null;
 
   return (
     <nav className="navbar" style={{
