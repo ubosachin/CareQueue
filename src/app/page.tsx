@@ -33,21 +33,22 @@ export default function LandingPage() {
         paddingRight: '5%'
       }}>
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           style={{ 
-            background: 'rgba(37, 99, 235, 0.1)', 
-            padding: '0.5rem 1.5rem', 
+            display: 'inline-flex', 
+            alignItems: 'center', 
+            gap: '0.6rem', 
+            padding: '0.5rem 1.25rem', 
             borderRadius: '2rem', 
+            background: 'rgba(var(--primary-rgb), 0.1)', 
+            border: '1px solid rgba(var(--primary-rgb), 0.2)',
+            marginBottom: '1.5rem',
             color: 'var(--primary)',
-            fontSize: '0.85rem',
+            fontSize: '0.8rem',
             fontWeight: 700,
-            marginBottom: '2rem',
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '0.5rem'
-          }}
-        >
+            letterSpacing: '0.05em'
+          }}>
           <Zap size={14} fill="var(--primary)" />
           AI-POWERED QUEUE ORCHESTRATION 2.0
         </motion.div>
@@ -84,11 +85,27 @@ export default function LandingPage() {
               <span>Medical Staff Login</span>
             </button>
           </Link>
-          <Link href="/patient">
-            <button className="glass-panel" style={{ padding: '0.85rem 1.75rem', fontSize: '0.95rem', borderRadius: '0.75rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer', border: '2px solid var(--secondary)' }}>
+          <Link href="/patient" style={{ textDecoration: 'none' }}>
+            <motion.button 
+              whileHover={{ scale: 1.02, backgroundColor: 'rgba(var(--secondary-rgb), 0.15)' }}
+              whileTap={{ scale: 0.98 }}
+              className="glass-panel" 
+              style={{ 
+                padding: '0.85rem 1.75rem', 
+                fontSize: '0.95rem', 
+                borderRadius: '0.75rem', 
+                fontWeight: 600, 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: '0.75rem', 
+                cursor: 'pointer', 
+                border: '2px solid var(--secondary)',
+                color: 'var(--secondary)',
+                background: 'rgba(var(--secondary-rgb), 0.05)'
+              }}>
               <Users size={18} color="var(--secondary)" />
               <span>Patient Portal</span>
-            </button>
+            </motion.button>
           </Link>
         </motion.div>
 

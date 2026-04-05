@@ -83,8 +83,8 @@ export default function LandingNavbar() {
                   fontSize: '0.9rem', 
                   fontWeight: 600, 
                   color: 'var(--foreground)', 
-                  opacity: 0.7,
-                  position: 'relative'
+                  opacity: isScrolled ? 1 : 0.85,
+                  cursor: 'pointer'
                 }}
                 whileHover={{ opacity: 1, y: -2 }}
               >
