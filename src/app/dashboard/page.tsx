@@ -191,7 +191,7 @@ export default function Dashboard() {
           icon={<Users size={20} />} 
           trend="+12% from yesterday" 
           trendType="positive" 
-          color="#2563EB"
+          color="--primary"
         />
         <StatCard 
           label="Avg. Wait Time" 
@@ -199,7 +199,7 @@ export default function Dashboard() {
           icon={<Clock size={20} />} 
           trend="-3.2m with AI" 
           trendType="positive" 
-          color="#22C55E"
+          color="--secondary"
         />
         <StatCard 
           label="Doctors Available" 
@@ -207,7 +207,7 @@ export default function Dashboard() {
           icon={<Stethoscope size={20} />} 
           trend="3 on rest" 
           trendType="neutral" 
-          color="#7C3AED"
+          color="--primary"
         />
         <StatCard 
           label="Emergency Cases" 
@@ -215,7 +215,7 @@ export default function Dashboard() {
           icon={<AlertCircle size={20} />} 
           trend="Immediate attention" 
           trendType="negative" 
-          color="#F97316"
+          color="--accent"
         />
       </div>
 
@@ -238,12 +238,12 @@ export default function Dashboard() {
               <AreaChart data={DATA}>
                 <defs>
                   <linearGradient id="colorPatients" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#2563EB" stopOpacity={0.3}/>
-                    <stop offset="95%" stopColor="#2563EB" stopOpacity={0}/>
+                    <stop offset="5%" stopColor="var(--primary)" stopOpacity={0.3}/>
+                    <stop offset="95%" stopColor="var(--primary)" stopOpacity={0}/>
                   </linearGradient>
                   <linearGradient id="colorWait" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#22C55E" stopOpacity={0.3}/>
-                    <stop offset="95%" stopColor="#22C55E" stopOpacity={0}/>
+                    <stop offset="5%" stopColor="var(--secondary)" stopOpacity={0.3}/>
+                    <stop offset="95%" stopColor="var(--secondary)" stopOpacity={0}/>
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(0,0,0,0.05)" />
@@ -257,8 +257,8 @@ export default function Dashboard() {
                     padding: '1rem' 
                   }} 
                 />
-                <Area type="monotone" dataKey="patients" stroke="#2563EB" strokeWidth={3} fillOpacity={1} fill="url(#colorPatients)" />
-                <Area type="monotone" dataKey="wait" stroke="#22C55E" strokeWidth={3} fillOpacity={1} fill="url(#colorWait)" />
+                <Area type="monotone" dataKey="patients" stroke="var(--primary)" strokeWidth={3} fillOpacity={1} fill="url(#colorPatients)" />
+                <Area type="monotone" dataKey="wait" stroke="var(--secondary)" strokeWidth={3} fillOpacity={1} fill="url(#colorWait)" />
               </AreaChart>
             </ResponsiveContainer>
           </div>
@@ -373,7 +373,7 @@ export default function Dashboard() {
                 <option>High Priority</option>
                 <option>Normal Care</option>
               </select>
-              <button type="submit" className="btn-primary" style={{ padding: '0.6rem' }}>Generate Token</button>
+              <button type="submit" className="btn-primary" style={{ padding: '0.8rem', borderRadius: '0.75rem', fontWeight: 700 }}>Generate Token</button>
             </form>
           </div>
         </div>

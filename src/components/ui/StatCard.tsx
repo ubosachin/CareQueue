@@ -13,13 +13,13 @@ interface StatCardProps {
   color?: string;
 }
 
-export default function StatCard({ label, value, icon, trend, trendType = 'neutral', color = 'var(--primary)' }: StatCardProps) {
+export default function StatCard({ label, value, icon, trend, trendType = 'neutral', color = '--primary' }: StatCardProps) {
   const isPositive = trendType === 'positive';
   const isNegative = trendType === 'negative';
 
   return (
     <motion.div
-      whileHover={{ y: -4, boxShadow: `0 20px 25px -5px ${color}22, 0 8px 10px -6px ${color}22` }}
+      whileHover={{ y: -4, boxShadow: `0 20px 25px -5px rgba(var(${color}-rgb), 0.2), 0 8px 10px -6px rgba(var(${color}-rgb), 0.2)` }}
       className="glass-card"
       style={{
         padding: '1.5rem',
@@ -30,7 +30,7 @@ export default function StatCard({ label, value, icon, trend, trendType = 'neutr
         minWidth: '220px',
         position: 'relative',
         overflow: 'hidden',
-        border: `1px solid ${color}15`
+        border: `1px solid rgba(var(${color}-rgb), 0.15)`
       }}
     >
       <div style={{
@@ -39,15 +39,15 @@ export default function StatCard({ label, value, icon, trend, trendType = 'neutr
         right: '-10px',
         width: '60px',
         height: '60px',
-        background: `${color}11`,
+        background: `rgba(var(${color}-rgb), 0.08)`,
         borderRadius: '50%',
         zIndex: 0
       }} />
 
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'relative', zIndex: 1 }}>
         <div style={{
-          background: `${color}22`,
-          color: color,
+          background: `rgba(var(${color}-rgb), 0.1)`,
+          color: `var(${color})`,
           padding: '0.6rem',
           borderRadius: '0.75rem',
           display: 'flex',

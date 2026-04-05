@@ -67,19 +67,24 @@ export default function PatientPortal() {
   return (
     <div className="patient-portal" style={{ 
       minHeight: '100vh', 
-      background: 'linear-gradient(135deg, #f0f7ff 0%, #ffffff 100%)',
-      padding: 'clamp(1rem, 4vw, 3rem) 2rem'
+      background: 'var(--background)',
+      padding: 'clamp(1rem, 4vw, 3rem) 2rem',
+      color: 'var(--foreground)'
     }}>
 
 
       <main className="content-split" style={{ maxWidth: '1200px', margin: '0 auto' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
           <section>
-            <h2 style={{ fontSize: 'clamp(1.5rem, 4.5vw, 2.2rem)', fontWeight: 900, letterSpacing: '-1px', marginBottom: '0.75rem' }}>
-              Your Care, <span style={{ color: 'var(--primary)' }}>Optimized</span>.
+            <h2 style={{ fontSize: 'clamp(1.5rem, 5vw, 2.5rem)', fontWeight: 900, letterSpacing: '-1.5px', marginBottom: '0.75rem', lineHeight: 1.1 }}>
+              Your Care, <span style={{ 
+                background: 'linear-gradient(135deg, var(--primary), #818cf8)', 
+                WebkitBackgroundClip: 'text', 
+                WebkitTextFillColor: 'transparent'
+              }}>Optimized</span>.
             </h2>
-            <p style={{ fontSize: '1rem', opacity: 0.6, maxWidth: '450px', lineHeight: 1.5 }}>
-              Join the medical queue from your device. Real-time AI prediction for wait times and physician availability.
+            <p style={{ fontSize: '1.1rem', opacity: 0.7, maxWidth: '450px', lineHeight: 1.6, marginBottom: '2rem' }}>
+              Experience the future of healthcare with our Al-powered queue management system.
             </p>
           </section>
 
@@ -114,7 +119,8 @@ export default function PatientPortal() {
                   justifyContent: 'space-between', 
                   alignItems: 'center',
                   padding: '1rem',
-                  background: 'rgba(0,0,0,0.02)',
+                  background: 'var(--sidebar-border)',
+                  opacity: 0.8,
                   borderRadius: '1rem'
                 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
@@ -138,7 +144,13 @@ export default function PatientPortal() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 className="glass-card" 
-                style={{ padding: '2.5rem', background: 'white', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.08)' }}
+                style={{ 
+                  padding: '2.5rem', 
+                  background: 'var(--card-bg)', 
+                  boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.15)', 
+                  border: '1px solid var(--card-border)',
+                  borderRadius: '1.5rem'
+                }}
               >
                 <div style={{ marginBottom: '1.5rem' }}>
                   <h3 style={{ fontSize: '1.25rem', fontWeight: 800 }}>Join the Queue</h3>
@@ -174,7 +186,7 @@ export default function PatientPortal() {
                       <select 
                         value={formData.department}
                         onChange={e => setFormData({...formData, department: e.target.value})}
-                        style={{ padding: '1rem', borderRadius: '0.8rem', border: '1px solid rgba(0,0,0,0.1)', outline: 'none', background: 'white' }}
+                        style={{ padding: '1rem', borderRadius: '0.8rem', border: '1px solid var(--sidebar-border)', outline: 'none', background: 'var(--background)', color: 'var(--foreground)' }}
                       >
                         {DEPARTMENTS.map(d => <option key={d}>{d}</option>)}
                       </select>

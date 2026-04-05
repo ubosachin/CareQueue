@@ -29,18 +29,18 @@ export default function SettingsPage() {
         <p style={{ opacity: 0.6, fontSize: '0.95rem', fontWeight: 500 }}>System preferences and administrative security controls.</p>
       </div>
 
-      <div className="content-split" style={{ gap: '2rem' }}>
-         <aside className="mobile-hide" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+      <div className="content-split" style={{ gap: '2.5rem' }}>
+         <aside style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', position: 'sticky', top: '90px', height: 'fit-content' }} className="settings-nav">
            {[
-             { label: 'Profile Settings', icon: <User size={18} />, active: true },
-             { label: 'Security & Auth', icon: <Shield size={18} /> },
-             { label: 'Notifications', icon: <Bell size={18} /> },
-             { label: 'Integrations', icon: <Globe size={18} /> },
-             { label: 'Data Management', icon: <Database size={18} /> },
-             { label: 'Hospital Info', icon: <Heart size={18} /> }
+             { label: 'Profile', icon: <User size={18} />, active: true },
+             { label: 'Security', icon: <Shield size={18} /> },
+             { label: 'Alerts', icon: <Bell size={18} /> },
+             { label: 'System', icon: <Globe size={18} /> },
+             { label: 'Data', icon: <Database size={18} /> }
            ].map((item, i) => (
              <motion.div 
                key={i} 
+               className="nav-item"
                whileHover={{ x: 5 }}
                style={{ 
                 display: 'flex', 
@@ -48,15 +48,16 @@ export default function SettingsPage() {
                 gap: '0.75rem', 
                 padding: '0.75rem 1rem', 
                 borderRadius: '0.75rem',
-                background: item.active ? 'rgba(37, 99, 235, 0.1)' : 'transparent',
+                background: item.active ? `rgba(var(--primary-rgb), 0.1)` : 'transparent',
                 color: item.active ? 'var(--primary)' : 'inherit',
                 fontWeight: item.active ? 700 : 500,
-                fontSize: '0.9rem',
+                fontSize: '0.85rem',
                 opacity: item.active ? 1 : 0.6,
-                cursor: 'pointer'
+                cursor: 'pointer',
+                border: item.active ? '1px solid rgba(var(--primary-rgb), 0.1)' : '1px solid transparent'
               }}>
                  {item.icon}
-                 {item.label}
+                 <span>{item.label}</span>
               </motion.div>
            ))}
         </aside>

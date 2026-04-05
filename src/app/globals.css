@@ -1,37 +1,52 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap');
 
 :root {
-  --primary: #2563eb;
-  --primary-hover: #1d4ed8;
-  --secondary: #22c55e;
-  --accent: #f97316;
+  --primary: #0066ff;
+  --primary-rgb: 0, 102, 255;
+  --primary-hover: #0052cc;
+  --secondary: #10b981;
+  --secondary-rgb: 16, 185, 129;
+  --accent: #f59e0b;
+  --accent-rgb: 245, 158, 11;
   --danger: #ef4444;
-  --background: #f8fafc;
-  --foreground: #0f172a;
-  --card-bg: rgba(255, 255, 255, 0.8);
-  --card-border: rgba(226, 232, 240, 0.8);
+  --danger-rgb: 239, 68, 68;
+  --warning: #f59e0b;
+  --background: #fdfdff;
+  --foreground: #020817;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
   --sidebar-bg: #ffffff;
-  --sidebar-border: #e2e8f0;
-  --glass: rgba(255, 255, 255, 0.4);
-  --glass-border: rgba(255, 255, 255, 0.2);
-  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --sidebar-border: #eef2f6;
+  --glass: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(0, 0, 0, 0.05);
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+  --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
 }
 
 [data-theme='dark'] {
   --primary: #3b82f6;
+  --primary-rgb: 59, 130, 246;
   --primary-hover: #60a5fa;
-  --secondary: #4ade80;
-  --accent: #fb923c;
+  --secondary: #34d399;
+  --secondary-rgb: 52, 211, 153;
+  --accent: #fbbf24;
+  --accent-rgb: 251, 191, 36;
   --danger: #f87171;
+  --danger-rgb: 248, 113, 113;
+  --warning: #fbbf24;
   --background: #020617;
   --foreground: #f8fafc;
-  --card-bg: rgba(15, 23, 42, 0.8);
-  --card-border: rgba(30, 41, 59, 0.8);
-  --sidebar-bg: #0f172a;
-  --sidebar-border: #1e293b;
-  --glass: rgba(15, 23, 42, 0.4);
-  --glass-border: rgba(255, 255, 255, 0.05);
+  --card-bg: #0f172a;
+  --card-border: #1e293b;
+  --sidebar-bg: #1e293b;
+  --sidebar-border: #334155;
+  --glass: rgba(15, 23, 42, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
 }
 
 * {
@@ -457,6 +472,25 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 0.4;
   font-weight: 700;
   z-index: 1000;
+}/* Settings Nav Responsive */
+@media (max-width: 1024px) {
+  .settings-nav {
+    flex-direction: row !important;
+    overflow-x: auto;
+    width: 100%;
+    padding-bottom: 0.5rem;
+    position: static !important;
+    border-bottom: 1px solid var(--sidebar-border);
+    margin-bottom: 1rem;
+    scrollbar-width: none;
+  }
+  .settings-nav::-webkit-scrollbar {
+    display: none;
+  }
+  .settings-nav .nav-item {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
 }
 
 .status-indicator {
