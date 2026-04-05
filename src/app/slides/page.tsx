@@ -68,7 +68,7 @@ const SLIDES = [
   },
   {
     id: 'problem',
-    title: 'The Critical Gap',
+    title: 'The Problem',
     subtitle: 'A $120B Operational Vacuum',
     content: (
       <div className="slides-grid grid-2" style={{ alignItems: 'center' }}>
@@ -128,11 +128,10 @@ const SLIDES = [
   },
   {
     id: 'solution',
-    title: 'The AI Solution',
+    title: 'The Solution',
     subtitle: 'Healthcare Re-Orchestrated',
     content: (
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-
         <div className="slides-grid grid-3">
           {[
             {
@@ -164,7 +163,6 @@ const SLIDES = [
               <div style={{ margin: '0 auto 1rem', color: 'var(--primary)' }}>{React.cloneElement(item.icon as any, { size: 32 })}</div>
               <h3 style={{ fontSize: 'clamp(1rem, 1.8vw, 1.25rem)', fontWeight: 900, marginBottom: '0.5rem' }}>{item.title}</h3>
               <p style={{ opacity: 0.6, lineHeight: 1.4, fontSize: '0.8rem' }}>{item.desc}</p>
-
             </motion.div>
           ))}
         </div>
@@ -176,6 +174,56 @@ const SLIDES = [
               <p style={{ opacity: 0.5, fontSize: '0.9rem' }}>Proprietary neural ranking engine optimized for clinical triage protocols.</p>
             </div>
           </div>
+        </div>
+      </div>
+    )
+  },
+  {
+    id: 'how-it-works',
+    title: 'How We Solve This',
+    subtitle: 'Strategic Implementation Fix',
+    content: (
+      <div className="slides-grid grid-2" style={{ alignItems: 'center' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+          {[
+            {
+              title: 'Smart Queue Intelligence',
+              desc: 'By feeding real-time physiological data into our neural engine, we eliminate manual clerical errors in triage.',
+              icon: <Zap color="var(--primary)" />
+            },
+            {
+              title: 'Dynamic Resource Sync',
+              desc: 'Physicians are automatically tagged and assigned based on availability and specialty matches via real-time HUDs.',
+              icon: <Activity color="var(--primary)" />
+            },
+            {
+              title: 'Predictive Load Management',
+              desc: 'Fixing the "emergency spike" problem by anticipating patient surges 2 hours in advance using historical patterns.',
+              icon: <TrendingUp color="var(--primary)" />
+            }
+          ].map((item, i) => (
+            <motion.div
+              key={i}
+              initial={{ x: -20, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ delay: i * 0.2 }}
+              style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}
+            >
+              <div style={{ background: 'rgba(37, 99, 235, 0.1)', padding: '1.25rem', borderRadius: '1rem' }}>{item.icon}</div>
+              <div>
+                <h4 style={{ fontWeight: 800, fontSize: '1.1rem' }}>{item.title}</h4>
+                <p style={{ opacity: 0.6, fontSize: '0.85rem' }}>{item.desc}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+        <div style={{ position: 'relative' }}>
+          <img 
+            src="/healthcare_ai_fix_flow_1775380026487.png" 
+            alt="AI Solution Flow" 
+            style={{ width: '100%', borderRadius: '2rem', boxShadow: '0 30px 60px rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.1)' }} 
+          />
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 60%, var(--bg) 100%)', borderRadius: '2rem' }} />
         </div>
       </div>
     )
