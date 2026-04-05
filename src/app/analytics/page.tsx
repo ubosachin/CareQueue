@@ -48,17 +48,17 @@ const DEP_DATA = [
 
 export default function AnalyticsPage() {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-        <div className="content-split" style={{ alignItems: 'flex-start' }}>
+    <div className="flex-col-responsive" style={{ gap: '2rem' }}>
+        <div className="flex-responsive" style={{ justifyContent: 'space-between', alignItems: 'flex-start', gap: '1.5rem' }}>
           <div>
-            <h1 style={{ fontSize: 'clamp(1.5rem, 4vw, 2rem)', fontWeight: 800 }}>Clinical Analytics</h1>
-            <p style={{ opacity: 0.6, fontWeight: 500 }}>Global performance metrics and patient flow trends.</p>
+            <h1 style={{ fontSize: 'clamp(1.75rem, 4vw, 2.5rem)', fontWeight: 900, letterSpacing: '-0.03em' }}>Clinical Analytics</h1>
+            <p style={{ opacity: 0.6, fontWeight: 500, fontSize: '1rem' }}>Global performance metrics and patient flow trends.</p>
           </div>
-          <div style={{ display: 'flex', gap: '1rem', width: '100%', justifyContent: 'flex-start' }}>
-            <button className="glass-panel" style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem 1.25rem', borderRadius: '0.75rem', fontWeight: 600 }}>
+          <div style={{ display: 'flex', gap: '0.75rem', width: 'auto', flexWrap: 'wrap' }}>
+            <button className="glass-panel" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem 1.25rem', borderRadius: '0.75rem', fontWeight: 700, border: '1px solid var(--sidebar-border)' }}>
               <Download size={18} /> Export
             </button>
-            <button className="btn-primary" style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <button className="btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <Calendar size={18} /> Last 7 Days
             </button>
           </div>
@@ -66,25 +66,27 @@ export default function AnalyticsPage() {
 
         <div className="stats-grid">
         {[
-          { label: 'Patient Volume', val: '1,284', trend: '+14%', icon: <Users /> },
-          { label: 'Avg Wait Reduction', val: '22min', trend: '-8min', icon: <TrendingUp /> },
-          { label: 'Staff Utilization', val: '88%', trend: '+2%', icon: <Activity /> },
-          { label: 'Patient Satisfaction', val: '4.8/5', trend: '+0.2', icon: <Stethoscope /> }
+          { label: 'Patient Volume', val: '1,284', trend: '+14%', icon: <Users />, color: 'var(--primary)' },
+          { label: 'Avg Wait Reduction', val: '22min', trend: '-8min', icon: <TrendingUp />, color: 'var(--secondary)' },
+          { label: 'Staff Utilization', val: '88%', trend: '+2%', icon: <Activity />, color: 'var(--accent)' },
+          { label: 'Patient Satisfaction', val: '4.8/5', trend: '+0.2', icon: <Stethoscope />, color: 'var(--success)' }
         ].map((kpi, i) => (
           <motion.div 
             key={i}
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileHover={{ y: -5, boxShadow: `0 20px 25px -5px ${kpi.color}11` }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ delay: i * 0.1 }}
             className="glass-card" 
-            style={{ padding: '1.5rem' }}
+            style={{ padding: '1.75rem', border: `1px solid ${kpi.color}15`, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}
           >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-              <div style={{ padding: '0.75rem', background: 'rgba(37, 99, 235, 0.1)', borderRadius: '1rem', color: 'var(--primary)' }}>{kpi.icon}</div>
-              <span style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--secondary)' }}>{kpi.trend}</span>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+              <div style={{ padding: '0.6rem', background: `${kpi.color}11`, borderRadius: '0.75rem', color: kpi.color }}>{kpi.icon}</div>
+              <span style={{ fontSize: '0.9rem', fontWeight: 800, color: kpi.trend.startsWith('+') ? 'var(--success)' : 'var(--danger)', background: kpi.trend.startsWith('+') ? 'var(--success-bg)' : 'var(--danger-bg)', padding: '0.2rem 0.6rem', borderRadius: '2rem' }}>{kpi.trend}</span>
             </div>
-            <p style={{ opacity: 0.5, fontSize: '0.85rem', fontWeight: 700, textTransform: 'uppercase' }}>{kpi.label}</p>
-            <h3 style={{ fontSize: '2rem', fontWeight: 900 }}>{kpi.val}</h3>
+            <p style={{ opacity: 0.5, fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{kpi.label}</p>
+            <h3 style={{ fontSize: '2.25rem', fontWeight: 900, letterSpacing: '-0.02em' }}>{kpi.val}</h3>
           </motion.div>
         ))}
       </div>

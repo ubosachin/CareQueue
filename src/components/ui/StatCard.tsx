@@ -19,7 +19,7 @@ export default function StatCard({ label, value, icon, trend, trendType = 'neutr
 
   return (
     <motion.div
-      whileHover={{ y: -4 }}
+      whileHover={{ y: -4, boxShadow: `0 20px 25px -5px ${color}22, 0 8px 10px -6px ${color}22` }}
       className="glass-card"
       style={{
         padding: '1.5rem',
@@ -27,9 +27,10 @@ export default function StatCard({ label, value, icon, trend, trendType = 'neutr
         flexDirection: 'column',
         gap: '0.75rem',
         flex: 1,
-        minWidth: '240px',
+        minWidth: '220px',
         position: 'relative',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        border: `1px solid ${color}15`
       }}
     >
       <div style={{

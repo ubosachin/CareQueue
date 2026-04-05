@@ -123,7 +123,7 @@ export default function Dashboard() {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+    <div className="flex-col-responsive" style={{ gap: '2rem' }}>
       <AnimatePresence>
         {showToast && (
           <motion.div 
@@ -152,7 +152,7 @@ export default function Dashboard() {
         )}
       </AnimatePresence>
 
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+      <div className="flex-responsive" style={{ justifyContent: 'space-between', alignItems: 'flex-end', gap: '1rem' }}>
         <div>
           <h1 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '0.2rem' }}>
             {session?.user?.name ? `Welcome, ${session.user.name}` : 'Hospital Command Center'}
@@ -263,7 +263,7 @@ export default function Dashboard() {
             </ResponsiveContainer>
           </div>
 
-          <div className="stats-grid" style={{ gridTemplateColumns: '1fr 1fr' }}>
+          <div className="stats-grid" style={{ gap: '1.5rem' }}>
             <div className="glass-card" style={{ padding: '1.5rem', height: '300px' }}>
               <h2 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1.5rem' }}>Doctor Workload Distribution</h2>
               <ResponsiveContainer width="100%" height="80%">

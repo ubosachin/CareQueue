@@ -18,7 +18,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
   }
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', overflowX: 'hidden' }}>
+    <div style={{ display: 'flex', minHeight: '100vh', position: 'relative' }}>
       {!isPatientHub && <Sidebar />}
       
       <div 
@@ -34,13 +34,13 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
         }} 
       />
 
-      <div className="main-content" style={{ 
+      <div className={`main-content ${!isPatientHub ? 'with-sidebar' : ''}`} style={{ 
         flex: 1, 
         display: 'flex', 
-        flexDirection: 'column', 
-        marginLeft: !isPatientHub ? 'var(--sidebar-width, 260px)' : '0', 
-        width: !isPatientHub ? 'calc(100% - var(--sidebar-width, 260px))' : '100%',
-        transition: 'margin-left 0.3s ease'
+        flexDirection: 'column',
+        width: '100%',
+        minWidth: 0,
+        transition: 'all 0.3s ease'
       }}>
         <Navbar />
         

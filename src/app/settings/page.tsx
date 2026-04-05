@@ -23,14 +23,14 @@ export default function SettingsPage() {
   const { data: session } = useSession();
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', maxWidth: '1000px' }}>
+    <div className="flex-col-responsive" style={{ gap: '2rem', maxWidth: '1200px' }}>
       <div>
-        <h1 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '0.2rem' }}>Settings & Configuration</h1>
-        <p style={{ opacity: 0.6, fontSize: '0.85rem', fontWeight: 500 }}>System preferences and administrative security controls.</p>
+        <h1 style={{ fontSize: 'clamp(1.5rem, 4vw, 2rem)', fontWeight: 800, marginBottom: '0.2rem', letterSpacing: '-0.02em' }}>Settings & Configuration</h1>
+        <p style={{ opacity: 0.6, fontSize: '0.95rem', fontWeight: 500 }}>System preferences and administrative security controls.</p>
       </div>
 
-      <div className="content-split" style={{ display: 'grid', gridTemplateColumns: '260px 1fr', gap: '3rem' }}>
-         <aside className="mobile-hide" style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+      <div className="content-split" style={{ gap: '2rem' }}>
+         <aside className="mobile-hide" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
            {[
              { label: 'Profile Settings', icon: <User size={18} />, active: true },
              { label: 'Security & Auth', icon: <Shield size={18} /> },
@@ -39,26 +39,29 @@ export default function SettingsPage() {
              { label: 'Data Management', icon: <Database size={18} /> },
              { label: 'Hospital Info', icon: <Heart size={18} /> }
            ].map((item, i) => (
-             <div key={i} style={{ 
-               display: 'flex', 
-               alignItems: 'center', 
-               gap: '0.75rem', 
-               padding: '0.6rem 0.85rem', 
-               borderRadius: '0.6rem',
-               background: item.active ? 'rgba(37, 99, 235, 0.1)' : 'transparent',
-               color: item.active ? 'var(--primary)' : 'inherit',
-               fontWeight: item.active ? 700 : 500,
-               fontSize: '0.85rem',
-               opacity: item.active ? 1 : 0.6,
-               cursor: 'pointer'
-             }}>
-                {item.icon}
-                {item.label}
-             </div>
+             <motion.div 
+               key={i} 
+               whileHover={{ x: 5 }}
+               style={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: '0.75rem', 
+                padding: '0.75rem 1rem', 
+                borderRadius: '0.75rem',
+                background: item.active ? 'rgba(37, 99, 235, 0.1)' : 'transparent',
+                color: item.active ? 'var(--primary)' : 'inherit',
+                fontWeight: item.active ? 700 : 500,
+                fontSize: '0.9rem',
+                opacity: item.active ? 1 : 0.6,
+                cursor: 'pointer'
+              }}>
+                 {item.icon}
+                 {item.label}
+              </motion.div>
            ))}
         </aside>
 
-        <main style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+        <main className="flex-col-responsive" style={{ gap: '1.5rem', display: 'flex' }}>
            <div className="glass-card" style={{ padding: '2rem' }}>
               <h3 style={{ fontSize: '1.1rem', fontWeight: 800, marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <User size={18} color="var(--primary)" />
@@ -97,13 +100,13 @@ export default function SettingsPage() {
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+                  <div className="grid-responsive" style={{ gap: '1.5rem' }}>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                        <label style={{ fontSize: '0.75rem', fontWeight: 700, opacity: 0.6 }}>Staff Name</label>
                        <input 
                          type="text" 
                          defaultValue={session?.user?.name || ''} 
-                         style={{ padding: '0.85rem', borderRadius: '0.6rem', border: '1px solid rgba(0,0,0,0.1)', outline: 'none', fontSize: '0.9rem' }} 
+                         style={{ padding: '0.85rem', borderRadius: '0.6rem', border: '1px solid rgba(0,0,0,0.1)', outline: 'none', fontSize: '0.9rem', width: '100%' }} 
                        />
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
@@ -111,10 +114,10 @@ export default function SettingsPage() {
                        <input 
                          type="email" 
                          defaultValue={session?.user?.email || ''} 
-                         style={{ padding: '0.85rem', borderRadius: '0.6rem', border: '1px solid rgba(0,0,0,0.1)', outline: 'none', fontSize: '0.9rem' }} 
+                         style={{ padding: '0.85rem', borderRadius: '0.6rem', border: '1px solid rgba(0,0,0,0.1)', outline: 'none', fontSize: '0.9rem', width: '100%' }} 
                        />
                     </div>
-                 </div>
+                  </div>
                  <button className="btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', width: 'fit-content' }}>
                     <Save size={18} /> Update Profile
                  </button>

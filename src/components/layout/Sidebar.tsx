@@ -3,13 +3,13 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { 
-  LayoutDashboard, 
-  Users, 
-  BarChart3, 
-  BrainCircuit, 
-  Settings, 
-  PlusCircle, 
+import {
+  LayoutDashboard,
+  Users,
+  BarChart3,
+  BrainCircuit,
+  Settings,
+  PlusCircle,
   Presentation,
   ShieldAlert,
   CalendarDays,
@@ -37,7 +37,7 @@ export default function Sidebar() {
 
   return (
     <>
-      <button 
+      <button
         onClick={() => setIsOpen(!isOpen)}
         className="mobile-menu-toggle glass-panel"
         style={{
@@ -63,105 +63,105 @@ export default function Sidebar() {
         transition: 'transform 0.3s ease'
       }}>
         <div style={{ display: 'flex', justifyContent: 'flex-end' }} className="mobile-only">
-           <button 
+          <button
             onClick={() => setIsOpen(false)}
             style={{ background: 'transparent', border: 'none', cursor: 'pointer' }}
           >
-             <PlusCircle size={24} style={{ transform: 'rotate(45deg)', opacity: 0.5 }} />
+            <PlusCircle size={24} style={{ transform: 'rotate(45deg)', opacity: 0.5 }} />
           </button>
         </div>
-      <div className="logo" style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: '0.75rem',
-        marginBottom: '2.5rem',
-        paddingLeft: '0.5rem'
-      }}>
-        <div style={{
-          background: 'var(--primary)',
-          padding: '0.5rem',
-          borderRadius: '0.5rem'
-        }}>
-          <Stethoscope size={24} color="white" />
-        </div>
-        <h1 className="gradient-text" style={{ fontSize: '1.5rem' }}>CareQueue</h1>
-      </div>
-
-      <nav style={{ flex: 1 }}>
-        <ul style={{ listStyle: 'none' }}>
-          {NAV_ITEMS.map((item) => {
-            const isActive = pathname === item.href;
-            return (
-              <li key={item.href} style={{ marginBottom: '0.5rem', position: 'relative' }}>
-                <Link href={item.href} style={{ textDecoration: 'none' }}>
-                  <motion.div
-                    whileHover={{ x: 4 }}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.75rem',
-                      padding: '0.75rem 1rem',
-                      borderRadius: '0.75rem',
-                      background: isActive ? 'var(--primary)' : 'transparent',
-                      color: isActive ? 'white' : 'var(--foreground)',
-                      opacity: isActive ? 1 : 0.7,
-                      fontWeight: isActive ? 600 : 500,
-                      cursor: 'pointer',
-                    }}
-                  >
-                    <item.icon size={20} />
-                    <span>{item.label}</span>
-                  </motion.div>
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      </nav>
-
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-        <div className="animate-pulse-subtle" style={{
-          padding: '1rem',
-          background: 'rgba(255, 68, 68, 0.1)',
-          borderRadius: '0.75rem',
-          border: '1px solid rgba(255, 68, 68, 0.2)',
-          color: '#ef4444',
+        <div className="logo" style={{
           display: 'flex',
           alignItems: 'center',
-          gap: '0.5rem',
-          fontSize: '0.875rem',
-          fontWeight: 600
+          gap: '0.75rem',
+          marginBottom: '2.5rem',
+          paddingLeft: '0.5rem'
         }}>
-          <ShieldAlert size={18} />
-          <span>System: ACTIVE</span>
+          <div style={{
+            background: 'var(--primary)',
+            padding: '0.5rem',
+            borderRadius: '0.5rem'
+          }}>
+            <Stethoscope size={24} color="white" />
+          </div>
+          <h1 className="gradient-text" style={{ fontSize: '1.5rem' }}>CareQueue</h1>
         </div>
 
-        {session && (
-          <button 
-            onClick={() => signOut({ callbackUrl: '/login' })}
-            style={{
-              padding: '0.75rem',
-              borderRadius: '0.75rem',
-              background: 'transparent',
-              border: '1px solid var(--sidebar-border)',
-              color: 'var(--foreground)',
-              opacity: 0.6,
-              cursor: 'pointer',
-              fontSize: '0.85rem',
-              fontWeight: 600,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '0.5rem'
-            }}
-            onMouseOver={(e) => e.currentTarget.style.opacity = '1'}
-            onMouseOut={(e) => e.currentTarget.style.opacity = '0.6'}
-          >
-            Sign Out
-          </button>
-        )}
-      </div>
-    </aside>
+        <nav style={{ flex: 1 }}>
+          <ul style={{ listStyle: 'none' }}>
+            {NAV_ITEMS.map((item) => {
+              const isActive = pathname === item.href;
+              return (
+                <li key={item.href} style={{ marginBottom: '0.5rem', position: 'relative' }}>
+                  <Link href={item.href} style={{ textDecoration: 'none' }}>
+                    <motion.div
+                      whileHover={{ x: 4 }}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.75rem',
+                        padding: '0.75rem 1rem',
+                        borderRadius: '0.75rem',
+                        background: isActive ? 'var(--primary)' : 'transparent',
+                        color: isActive ? 'white' : 'var(--foreground)',
+                        opacity: isActive ? 1 : 0.7,
+                        fontWeight: isActive ? 600 : 500,
+                        cursor: 'pointer',
+                      }}
+                    >
+                      <item.icon size={20} />
+                      <span>{item.label}</span>
+                    </motion.div>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+          <div className="animate-pulse-subtle" style={{
+            padding: '1rem',
+            background: 'rgba(255, 68, 68, 0.1)',
+            borderRadius: '0.75rem',
+            border: '1px solid rgba(255, 68, 68, 0.2)',
+            color: '#ef4444',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            fontSize: '0.875rem',
+            fontWeight: 600
+          }}>
+            <ShieldAlert size={18} />
+            <span>System: ACTIVE</span>
+          </div>
+
+          {session && (
+            <button
+              onClick={() => signOut({ callbackUrl: '/login' })}
+              style={{
+                padding: '0.75rem',
+                borderRadius: '0.75rem',
+                background: 'transparent',
+                border: '1px solid var(--sidebar-border)',
+                color: 'var(--foreground)',
+                opacity: 0.6,
+                cursor: 'pointer',
+                fontSize: '0.85rem',
+                fontWeight: 600,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '0.5rem'
+              }}
+              onMouseOver={(e) => e.currentTarget.style.opacity = '1'}
+              onMouseOut={(e) => e.currentTarget.style.opacity = '0.6'}
+            >
+              Sign Out
+            </button>
+          )}
+        </div>
+      </aside>
     </>
   );
 }

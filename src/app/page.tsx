@@ -92,12 +92,12 @@ export default function LandingPage() {
           </Link>
         </motion.div>
 
-        {/* Dashboard Preview */}
+      {/* Dashboard Preview */}
         <motion.div
           id="solutions"
           initial={{ opacity: 0, y: 100 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, type: 'spring', damping: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           className="content-split"
           style={{ 
             marginTop: '5rem', 
@@ -111,8 +111,8 @@ export default function LandingPage() {
           }}
         >
           <div style={{ padding: 'clamp(1.5rem, 5vw, 3rem)', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '2rem' }}>
-             <h3 style={{ fontSize: 'clamp(1.5rem, 5vw, 2.22rem)', fontWeight: 900, letterSpacing: '-1.1px' }}>Engineered for <span style={{ color: 'var(--primary)' }}>Speed</span></h3>
-             <p style={{ opacity: 0.6, fontSize: '0.95rem', lineHeight: 1.5 }}>Our clinician dashboard provides real-time oversight of hospital throughput, triage stability, and AI-optimized doctor assignments.</p>
+             <h3 style={{ fontSize: 'clamp(1.5rem, 5vw, 2.22rem)', fontWeight: 900, letterSpacing: '-1px' }}>Engineered for <span style={{ color: 'var(--primary)' }}>Speed</span></h3>
+             <p style={{ opacity: 0.6, fontSize: '1.05rem', lineHeight: 1.6 }}>Our clinician dashboard provides real-time oversight of hospital throughput, triage stability, and AI-optimized doctor assignments.</p>
              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                 {[
                   { l: 'Token Serialization', d: '99.9% fault tolerance' },
@@ -121,7 +121,7 @@ export default function LandingPage() {
                 ].map((item, i) => (
                   <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                     <div style={{ color: 'var(--primary)' }}><ShieldCheck size={20} /></div>
-                    <div style={{ fontSize: '0.9rem', fontWeight: 600, textAlign: 'left' }}>{item.l}: <span style={{ opacity: 0.5 }}>{item.d}</span></div>
+                    <div style={{ fontSize: '0.95rem', fontWeight: 600, textAlign: 'left' }}>{item.l}: <span style={{ opacity: 0.5 }}>{item.d}</span></div>
                   </div>
                 ))}
              </div>
@@ -151,8 +151,8 @@ export default function LandingPage() {
       </section>
 
       {/* Stats Section */}
-      <section id="impact" style={{ padding: '5rem 5%', background: 'rgba(37, 99, 235, 0.02)' }}>
-        <div className="stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2rem', maxWidth: '1200px', margin: '0 auto' }}>
+      <section id="impact" style={{ padding: '100px 5%', background: 'rgba(37, 99, 235, 0.02)' }}>
+        <div className="grid-responsive" style={{ '--cols': 4, maxWidth: '1200px', margin: '0 auto' } as any}>
           {[
             { label: 'Wait Reduction', val: '40%', icon: <Clock /> },
             { label: 'Patient Inflow', val: '12k+', icon: <Users /> },
@@ -160,7 +160,7 @@ export default function LandingPage() {
             { label: 'ROI Potential', val: '180%', icon: <TrendingUp /> }
           ].map((stat, i) => (
             <div key={i} style={{ textAlign: 'center' }}>
-              <div style={{ fontSize: '2.2rem', fontWeight: 900, marginBottom: '0.25rem' }}>{stat.val}</div>
+              <div style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 900, marginBottom: '0.25rem' }}>{stat.val}</div>
               <p style={{ opacity: 0.5, fontWeight: 700, textTransform: 'uppercase', fontSize: '0.75rem', letterSpacing: '0.1em' }}>{stat.label}</p>
             </div>
           ))}
@@ -170,10 +170,10 @@ export default function LandingPage() {
       {/* Features Section */}
       <section id="features" style={{ padding: '100px 5%' }}>
         <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
-          <h2 style={{ fontSize: '2.2rem', fontWeight: 900, marginBottom: '0.75rem' }}>Smarter Hospital Operations</h2>
-          <p style={{ opacity: 0.6, fontSize: '1rem', maxWidth: '500px', margin: '0 auto' }}>Designed for complex medical environments that demand absolute precision.</p>
+          <h2 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', fontWeight: 900, marginBottom: '1rem' }}>Smarter Hospital Operations</h2>
+          <p style={{ opacity: 0.6, fontSize: '1.1rem', maxWidth: '600px', margin: '0 auto' }}>Designed for complex medical environments that demand absolute precision.</p>
         </div>
-        <div className="stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2rem', maxWidth: '1200px', margin: '0 auto' }}>
+        <div className="grid-responsive" style={{ '--cols': 3, maxWidth: '1200px', margin: '0 auto' } as any}>
           {[
             { title: 'Emergency Triage', desc: 'AI automatically flags and prioritizes critical patients through token bypass.', icon: <ShieldCheck size={32} /> },
             { title: 'Dynamic Scheduling', desc: 'Doctor allocation adjusts in real-time based on current patient complexity.', icon: <LayoutDashboard size={32} /> },
@@ -200,8 +200,8 @@ export default function LandingPage() {
               }}>
                 {feature.icon}
               </div>
-              <h3 style={{ fontSize: '1.15rem', fontWeight: 800 }}>{feature.title}</h3>
-              <p style={{ opacity: 0.6, fontSize: '0.85rem', lineHeight: 1.5 }}>{feature.desc}</p>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 800 }}>{feature.title}</h3>
+              <p style={{ opacity: 0.6, fontSize: '0.95rem', lineHeight: 1.6 }}>{feature.desc}</p>
             </motion.div>
           ))}
         </div>

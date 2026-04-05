@@ -60,20 +60,22 @@ export default function QueueManagement() {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-      <div className="content-split" style={{ alignItems: 'center' }}>
+    <div className="flex-col-responsive" style={{ gap: '2rem' }}>
+      <div className="flex-responsive" style={{ justifyContent: 'space-between', alignItems: 'center' }}>
         <div>
-          <h1 style={{ fontSize: '2rem', fontWeight: 800 }}>Queue Management</h1>
-          <p style={{ opacity: 0.6, fontWeight: 500 }}>Live view of all patients currently in the hospital system.</p>
+          <h1 style={{ fontSize: 'clamp(1.5rem, 4vw, 2rem)', fontWeight: 800 }}>Queue Management</h1>
+          <p style={{ opacity: 0.6, fontWeight: 500, fontSize: '0.9rem' }}>Live view of all patients currently in the hospital system.</p>
         </div>
-        <div style={{ display: 'flex', gap: '1rem' }}>
-          <div className="glass-panel" style={{ 
+        <div className="flex-responsive" style={{ gap: '1rem', width: 'auto' }}>
+          <div className="glass-card" style={{ 
             display: 'flex', 
             alignItems: 'center', 
             gap: '0.5rem', 
-            padding: '0.75rem 1rem', 
+            padding: '0.6rem 1rem', 
             borderRadius: '0.75rem',
-            border: '1px solid var(--sidebar-border)'
+            border: '1px solid var(--sidebar-border)',
+            flex: 1,
+            minWidth: '240px'
           }}>
             <Search size={18} style={{ opacity: 0.5 }} />
             <input 
@@ -81,24 +83,26 @@ export default function QueueManagement() {
               placeholder="Search patients..." 
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              style={{ border: 'none', background: 'transparent', outline: 'none', color: 'inherit' }}
+              style={{ border: 'none', background: 'transparent', outline: 'none', color: 'inherit', width: '100%', fontSize: '0.85rem' }}
             />
           </div>
-          <button 
-            className="btn-primary" 
-            onClick={async () => {
-              const res = await fetch('/api/optimize', { method: 'POST' });
-              if (res.ok) window.location.reload();
-            }}
-            style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'var(--secondary)' }}
-          >
-            <Sparkles size={18} />
-            <span>Smart AI Optimization</span>
-          </button>
-          <button className="btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <ShieldAlert size={18} />
-            <span>Emergency Priority</span>
-          </button>
+          <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+            <button 
+              className="btn-primary" 
+              onClick={async () => {
+                const res = await fetch('/api/optimize', { method: 'POST' });
+                if (res.ok) window.location.reload();
+              }}
+              style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'var(--secondary)' }}
+            >
+              <Sparkles size={18} />
+              <span>AI Optimize</span>
+            </button>
+            <button className="btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'var(--danger)' }}>
+              <ShieldAlert size={18} />
+              <span>Emergency</span>
+            </button>
+          </div>
         </div>
       </div>
 

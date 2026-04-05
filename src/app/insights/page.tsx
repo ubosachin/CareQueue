@@ -50,20 +50,20 @@ const INSIGHTS = [
 
 export default function InsightsPage() {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-        <div className="content-split" style={{ alignItems: 'flex-start' }}>
+    <div className="flex-col-responsive" style={{ gap: '2rem' }}>
+        <div className="flex-responsive" style={{ justifyContent: 'space-between', alignItems: 'flex-start' }}>
           <div>
-            <h1 style={{ fontSize: 'clamp(1.5rem, 4vw, 2rem)', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-               <BrainCircuit className="animate-pulse-subtle" color="var(--primary)" size={32} />
+            <h1 style={{ fontSize: 'clamp(1.5rem, 4vw, 2.25rem)', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '0.75rem', letterSpacing: '-0.02em' }}>
+               <BrainCircuit className="animate-pulse-subtle" color="var(--primary)" size={36} />
                AI Clinical Insights
             </h1>
-            <p style={{ opacity: 0.6, fontWeight: 500 }}>Proactive medical recommendations and bottleneck predictions.</p>
+            <p style={{ opacity: 0.6, fontWeight: 500, fontSize: '1rem' }}>Proactive medical recommendations and bottleneck predictions.</p>
           </div>
-          <div style={{ display: 'flex', gap: '1rem', width: '100%', justifyContent: 'flex-start' }}>
-            <button className="glass-panel" style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem 1.25rem', borderRadius: '0.75rem', fontWeight: 600 }}>
+          <div style={{ display: 'flex', gap: '1rem', width: 'auto', flexWrap: 'wrap' }}>
+            <button className="glass-panel" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem 1.25rem', borderRadius: '0.75rem', fontWeight: 600, border: '1px solid var(--sidebar-border)' }}>
               <Zap size={18} fill="var(--primary)" /> Smart Audit
             </button>
-            <button className="btn-primary" style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            <button className="btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               <Sparkles size={18} /> Re-Generate
             </button>
           </div>
@@ -73,27 +73,35 @@ export default function InsightsPage() {
         {[
           { label: 'AI Prediction Accuracy', val: '94.2%', icon: <Target size={24} />, color: 'var(--primary)' },
           { label: 'Active Recommendations', val: '12', icon: <Lightbulb size={24} />, color: 'var(--secondary)' },
-          { label: 'Estimated ROI Gain', val: '+$14.2k/mo', icon: <TrendingUp size={24} />, color: 'var(--success)' }
+          { label: 'Estimated ROI Gain', val: '+$14.2k/mo', icon: <TrendingUp size={24} />, color: 'var(--accent)' }
         ].map((stat, i) => (
-          <div key={i} className="glass-card" style={{ padding: '1.5rem', border: `1px solid rgba(0,0,0,0.03)` }}>
-            <div style={{ color: stat.color, marginBottom: '1rem' }}>{stat.icon}</div>
-            <p style={{ opacity: 0.4, fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase' }}>{stat.label}</p>
-            <h3 style={{ fontSize: '2rem', fontWeight: 900 }}>{stat.val}</h3>
-          </div>
+          <motion.div 
+            key={i} 
+            whileHover={{ y: -5, boxShadow: `0 20px 25px -5px ${stat.color}11` }}
+            className="glass-card" 
+            style={{ padding: '1.5rem', border: `1px solid ${stat.color}15`, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}
+          >
+            <div style={{ color: stat.color, marginBottom: '0.5rem', background: `${stat.color}11`, width: 'fit-content', padding: '0.6rem', borderRadius: '0.75rem' }}>
+              {stat.icon}
+            </div>
+            <p style={{ opacity: 0.5, fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>{stat.label}</p>
+            <h3 style={{ fontSize: '2.25rem', fontWeight: 900, letterSpacing: '-0.02em' }}>{stat.val}</h3>
+          </motion.div>
         ))}
       </div>
 
       <div className="content-split">
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-           <h2 style={{ fontSize: '1.5rem', fontWeight: 800 }}>Critical Recommendations</h2>
+           <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--primary)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Critical Recommendations</h2>
            {INSIGHTS.map((insight, index) => (
              <motion.div 
                key={insight.id}
-               initial={{ opacity: 0, x: -20 }}
-               animate={{ opacity: 1, x: 0 }}
+               initial={{ opacity: 0, y: 20 }}
+               whileInView={{ opacity: 1, y: 0 }}
+               viewport={{ once: true }}
                transition={{ delay: index * 0.1 }}
                className="glass-card" 
-               style={{ padding: '2rem', position: 'relative', overflow: 'hidden' }}
+               style={{ padding: '2rem', position: 'relative', overflow: 'hidden', border: '1px solid var(--sidebar-border)' }}
              >
                 {/* Accent line based on impact */}
                 <div style={{ 
@@ -101,39 +109,40 @@ export default function InsightsPage() {
                   top: 0, 
                   bottom: 0, 
                   left: 0, 
-                  width: '6px', 
+                  width: '4px', 
                   background: insight.impact === 'High' ? 'var(--danger)' : 'var(--primary)'
                 }} />
                 
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.25rem', gap: '1rem', flexWrap: 'wrap' }}>
                    <div>
                      <span style={{ 
                        background: 'rgba(37, 99, 235, 0.1)', 
-                       padding: '0.3rem 0.75rem', 
+                       padding: '0.4rem 0.85rem', 
                        borderRadius: '2rem', 
-                       fontSize: '0.75rem', 
-                       fontWeight: 700,
-                       color: 'var(--primary)'
+                       fontSize: '0.7rem', 
+                       fontWeight: 800,
+                       color: 'var(--primary)',
+                       textTransform: 'uppercase'
                      }}>
                        {insight.type}
                      </span>
-                     <h3 style={{ fontSize: '1.25rem', fontWeight: 800, marginTop: '0.75rem' }}>{insight.title}</h3>
+                     <h3 style={{ fontSize: '1.35rem', fontWeight: 800, marginTop: '1rem', letterSpacing: '-0.01em' }}>{insight.title}</h3>
                    </div>
                    <div style={{ textAlign: 'right' }}>
-                      <p style={{ fontSize: '0.75rem', fontWeight: 700, opacity: 0.4 }}>Impact Path</p>
-                      <span style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--success)' }}>{insight.efficiency}</span>
+                      <p style={{ fontSize: '0.7rem', fontWeight: 800, opacity: 0.4, textTransform: 'uppercase' }}>Efficiency Boost</p>
+                      <span style={{ fontSize: '1.25rem', fontWeight: 900, color: 'var(--secondary)' }}>{insight.efficiency}</span>
                    </div>
                 </div>
                 
-                <p style={{ opacity: 0.6, fontSize: '1rem', lineHeight: 1.6, marginBottom: '2rem' }}>
+                <p style={{ opacity: 0.7, fontSize: '1rem', lineHeight: 1.6, marginBottom: '2rem' }}>
                   {insight.description}
                 </p>
 
-                <div style={{ display: 'flex', gap: '1rem' }}>
-                   <button className="btn-primary" style={{ padding: '0.6rem 1.2rem', borderRadius: '0.75rem', fontSize: '0.85rem' }}>
+                <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                   <button className="btn-primary" style={{ padding: '0.75rem 1.5rem', borderRadius: '0.75rem', fontSize: '0.9rem' }}>
                      Execute Optimization
                    </button>
-                   <button className="glass-panel" style={{ padding: '0.6rem 1.2rem', borderRadius: '0.75rem', fontSize: '0.85rem', fontWeight: 700 }}>
+                   <button className="glass-panel" style={{ padding: '0.75rem 1.5rem', borderRadius: '0.75rem', fontSize: '0.9rem', fontWeight: 700, border: '1px solid var(--sidebar-border)' }}>
                      Review Details
                    </button>
                 </div>

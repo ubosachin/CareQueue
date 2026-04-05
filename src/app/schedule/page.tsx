@@ -27,14 +27,14 @@ export default function SchedulePage() {
   const [currentDate, setCurrentDate] = React.useState(new Date());
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+    <div className="flex-col-responsive" style={{ gap: '2rem' }}>
+      <div className="flex-responsive" style={{ justifyContent: 'space-between', alignItems: 'center', gap: '1.5rem' }}>
         <div>
-          <h1 style={{ fontSize: '2rem', fontWeight: 800 }}>Smart Schedule</h1>
-          <p style={{ opacity: 0.6, fontWeight: 500 }}>Live physician shifts and upcoming patient appointments.</p>
+          <h1 style={{ fontSize: 'clamp(1.75rem, 4vw, 2.5rem)', fontWeight: 900, letterSpacing: '-0.03em' }}>Smart Schedule</h1>
+          <p style={{ opacity: 0.6, fontWeight: 500, fontSize: '1rem' }}>Live physician shifts and upcoming patient appointments.</p>
         </div>
-        <div style={{ display: 'flex', gap: '1rem' }}>
-          <button className="glass-panel" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem 1.25rem', borderRadius: '0.75rem', fontWeight: 600 }}>
+        <div style={{ display: 'flex', gap: '0.75rem', width: 'auto', flexWrap: 'wrap' }}>
+          <button className="glass-panel" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem 1.25rem', borderRadius: '0.75rem', fontWeight: 700, border: '1px solid var(--sidebar-border)' }}>
             <Filter size={18} /> Filters
           </button>
           <button className="btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
@@ -43,8 +43,8 @@ export default function SchedulePage() {
         </div>
       </div>
 
-      <div className="content-split" style={{ display: 'grid', gridTemplateColumns: 'min-content 1fr', gap: '2rem' }}>
-        <aside className="mobile-hide" style={{ width: '300px', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+      <div className="content-split" style={{ gap: '2rem' }}>
+        <aside className="mobile-hide" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
            <div className="glass-card" style={{ padding: '1.5rem' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
                  <h3 style={{ fontWeight: 800 }}>Mini Calendar</h3>

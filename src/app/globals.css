@@ -176,6 +176,49 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 0 15px rgba(37,99,235,0.1);
 }
 
+/* Responsive Utilities */
+.flex-responsive {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (min-width: 769px) {
+  .flex-responsive {
+    flex-direction: row;
+  }
+}
+
+.grid-responsive {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1025px) {
+  .grid-responsive {
+    grid-template-columns: repeat(var(--cols, 3), 1fr);
+  }
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.content-split {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+  .content-split {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Patient Hub Nav Adjustments */
 .patient-nav {
   padding: 0 5%;
@@ -193,6 +236,10 @@ h1, h2, h3, h4, h5, h6 {
     margin-left: 0 !important;
     width: 100% !important;
   }
+  .main-content.with-sidebar {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
   .navbar {
     margin-left: 0 !important;
     width: 100% !important;
@@ -200,6 +247,13 @@ h1, h2, h3, h4, h5, h6 {
   }
   .sidebar.mobile-open + .mobile-backdrop {
     display: block !important;
+  }
+}
+
+@media (min-width: 1025px) {
+  .main-content.with-sidebar {
+    margin-left: 260px;
+    width: calc(100% - 260px);
   }
 }
 
@@ -212,23 +266,62 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Header Responsiveness */
-@media (max-width: 768px) {
-  header nav {
-    display: none !important;
-  }
-  .stats-grid {
-    grid-template-columns: 1fr !important;
-  }
+/* Global Layout Utilities */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.content-split {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 1024px) {
   .content-split {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: 1fr;
   }
+}
+
+.flex-responsive {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (min-width: 769px) {
+  .flex-responsive {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.grid-2, .grid-3, .grid-4 {
+  display: grid;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.grid-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+@media (max-width: 1024px) {
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: 1fr; }
   .hero-buttons {
-    flex-direction: column;
+    flex-direction: column !important;
     width: 100%;
   }
-  .hero-buttons a {
-    width: 100%;
+  .hero-buttons a, .hero-buttons button {
+    width: 100% !important;
   }
 }
 
