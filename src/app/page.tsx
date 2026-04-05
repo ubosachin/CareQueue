@@ -2,74 +2,24 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import LandingNavbar from '@/components/layout/LandingNavbar';
 import { 
-  Stethoscope, 
   BrainCircuit, 
   Clock, 
   Activity, 
   TrendingUp, 
   ShieldCheck, 
   Users, 
-  ChevronRight, 
-  Play,
   Zap,
-  LayoutDashboard
+  LayoutDashboard,
+  Stethoscope
 } from 'lucide-react';
 import Link from 'next/link';
 
 export default function LandingPage() {
   return (
     <div style={{ backgroundColor: 'var(--background)', minHeight: '100vh', overflowX: 'hidden' }}>
-      <style jsx global>{`
-        body {
-          font-family: 'Inter', sans-serif;
-          background-color: var(--background);
-          color: var(--foreground);
-          -webkit-font-smoothing: antialiased;
-          min-height: 100vh;
-          font-size: 14px;
-          line-height: 1.5;
-        }
-
-        @media (max-width: 768px) {
-          body {
-            font-size: 15px;
-          }
-        }
-      `}</style>
-      {/* Navigation */}
-      <nav style={{ 
-        height: '80px', 
-        padding: '0 5%', 
-        display: 'flex', 
-        alignItems: 'center', 
-        justifyContent: 'space-between',
-        background: 'rgba(255, 255, 255, 0.4)',
-        backdropFilter: 'blur(10px)',
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 1000
-      }}>
-        <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-          <div style={{ background: 'var(--primary)', padding: '0.4rem', borderRadius: '0.5rem' }}>
-            <Stethoscope size={24} color="white" />
-          </div>
-          <span className="gradient-text" style={{ fontSize: 'clamp(1.2rem, 3vw, 1.8rem)', fontWeight: 900 }}>CareQueue</span>
-        </Link>
-        <div className="mobile-hide" style={{ display: 'flex', gap: '2.5rem', alignItems: 'center', fontSize: '0.9rem', fontWeight: 600 }}>
-          <a href="#features" style={{ opacity: 0.7 }}>Features</a>
-          <a href="#solutions" style={{ opacity: 0.7 }}>Solutions</a>
-          <a href="#impact" style={{ opacity: 0.7 }}>Impact</a>
-          <Link href="/slides">
-            <span style={{ opacity: 0.7, cursor: 'pointer' }}>Pitch Deck</span>
-          </Link>
-          <Link href="/dashboard">
-            <button className="btn-primary">Launch Dashboard</button>
-          </Link>
-        </div>
-      </nav>
+      <LandingNavbar />
 
       {/* Hero Section */}
       <section style={{ 
@@ -144,6 +94,7 @@ export default function LandingPage() {
 
         {/* Dashboard Preview */}
         <motion.div
+          id="solutions"
           initial={{ opacity: 0, y: 100 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, type: 'spring', damping: 20 }}
@@ -200,7 +151,7 @@ export default function LandingPage() {
       </section>
 
       {/* Stats Section */}
-      <section style={{ padding: '5rem 5%', background: 'rgba(37, 99, 235, 0.02)' }}>
+      <section id="impact" style={{ padding: '5rem 5%', background: 'rgba(37, 99, 235, 0.02)' }}>
         <div className="stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2rem', maxWidth: '1200px', margin: '0 auto' }}>
           {[
             { label: 'Wait Reduction', val: '40%', icon: <Clock /> },
