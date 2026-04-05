@@ -24,6 +24,7 @@ import Link from 'next/link';
 export default function Navbar() {
   const { data: session } = useSession();
   const pathname = usePathname();
+  const [mounted, setMounted] = React.useState(false);
   const [isDark, setIsDark] = React.useState(false);
   const [stats, setStats] = React.useState({
     waiting: 0,
@@ -31,11 +32,18 @@ export default function Navbar() {
     availableDoctors: 0,
     avgWaitTime: 15
   });
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = React.useState(false);
 
-  // Poll for stats every 30 seconds
   React.useEffect(() => {
+    setMounted(true);
+    const savedTheme = localStorage.getItem('theme');
+    const systemTheme = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+    const initialDark = savedTheme === 'dark' || (!savedTheme && systemTheme);
+    setIsDark(initialDark);
+    if (initialDark) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+
     const fetchStats = async () => {
       try {
         const res = await fetch('/api/stats');
@@ -62,9 +70,12 @@ export default function Navbar() {
     return name.split(' ').map(n => n[0]).slice(0, 2).join('').toUpperCase();
   };
 
-  const isPatientLayout = pathname.startsWith('/patient');
+  const isPatientLayout = pathname?.startsWith('/patient');
   const isMinimal = pathname === '/' || pathname === '/slides' || pathname === '/login';
 
+  // Return a placeholder structure during server-render if needed, but here we prefer consistency.
+  // Actually, returning a skeleton or a stable SSR structure is better.
+  
   if (isMinimal) return null;
 
   return (
@@ -98,11 +109,13 @@ export default function Navbar() {
         </motion.div>
 
         {isPatientLayout ? (
-           <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-               <div style={{ width: '32px', height: '32px', background: 'var(--primary)', borderRadius: '0.75rem', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white' }}>
-                 <Stethoscope size={18} />
-               </div>
-               <span style={{ fontWeight: 900, color: 'var(--foreground)', fontSize: '1rem', letterSpacing: '-0.5px' }}>CareQueue</span>
+           <Link href="/" style={{ textDecoration: 'none' }}>
+             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                <div style={{ width: '32px', height: '32px', background: 'var(--primary)', borderRadius: '0.75rem', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white' }}>
+                  <Stethoscope size={18} />
+                </div>
+                <span style={{ fontWeight: 900, color: 'var(--foreground)', fontSize: '1rem', letterSpacing: '-0.5px' }}>CareQueue</span>
+             </div>
            </Link>
         ) : (
            <div className="search-wrapper" style={{ position: 'relative', width: 'clamp(200px, 30vw, 320px)' }}>
