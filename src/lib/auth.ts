@@ -17,22 +17,28 @@ export const nextAuthOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
-          throw new Error("Invalid credentials");
+          console.error("Auth Error: Missing credentials");
+          throw new Error("Missing credentials");
         }
 
         await dbConnect();
-        const user = await UserModel.findOne({ email: credentials.email });
+        console.log("Auth Debug: Attempting to find user", credentials.email);
+        const user = await UserModel.findOne({ email: credentials.email.toLowerCase().trim() });
 
-        if (!user || !user.passwordHash) {
+        if (!user) {
+          console.error("Auth Error: User not found in DB");
           throw new Error("User not found");
         }
 
-        const isPasswordCorrect = await bcrypt.compare(credentials.password, user.passwordHash);
+        console.log("Auth Debug: Found user, comparing password...");
+        const isPasswordCorrect = await bcrypt.compare(credentials.password, user.passwordHash || user.password);
 
         if (!isPasswordCorrect) {
+          console.error("Auth Error: Password mismatch");
           throw new Error("Incorrect password");
         }
 
+        console.log("Auth Debug: Success! Redirecting...");
         return {
           id: user._id.toString(),
           email: user.email,
